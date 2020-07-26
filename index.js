@@ -17,15 +17,15 @@ function makeResponse(request, data, endSession) {
 
 function needHelp(request) {
 	const helpWords = ['еще', 'снова', 'заново', 'повтори', 'помощь'];
-	return !request.nlu.tokens || !!request.nlu.tokens.length
-		&& request.nlu.tokens.some((token) => {
+	return !request.nlu.tokens || !request.nlu.tokens.length
+		|| request.nlu.tokens.some((token) => {
 			return helpWords.indexOf(token) !== -1;
 		});
 }
 
 function heedStop(request) {
 	const stopWords = ['хватит', 'спасибо', 'пока', 'хватит'];
-	return request.nlu.tokens && !request.nlu.tokens.length
+	return request.nlu.tokens && !!request.nlu.tokens.length
 		&& request.nlu.tokens.some((token) => {
 			return stopWords.indexOf(token) !== -1;
 		});
