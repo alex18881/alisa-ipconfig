@@ -1,6 +1,12 @@
 const express = require("express");
+const { request } = require("express");
 
 const app = express();
+
+function makeResponse(request, data) {
+	const { session, version } = request;
+	return { session, version, response: data };
+}
 
 app.use(express.json());
 
@@ -10,8 +16,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req,res) => {
-	console.log('req', JSON.stringify(req.body), req.ips);
-	res.status(200).json(req.ips);
+	console.log('req', JSON.stringify(req.body), req.ip, req.ips, req.headers);
+	res.status(200).json(makeResponse(req.body, req.ips));
 });
 
 app.listen(process.env.PORT || 8000, (args) => {
