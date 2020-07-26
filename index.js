@@ -2,13 +2,15 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
 	console.log('Index loading');
 	res.status(200).send('Ok');
 });
 
-app.post('/', express.json, (req,res) => {
-	console.log('req', req);
+app.post('/', (req,res) => {
+	console.log('req', JSON.stringify(req.body), req.ips);
 	res.status(200).json(req.ips);
 });
 
