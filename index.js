@@ -5,7 +5,14 @@ const app = express();
 
 function makeResponse(request, data) {
 	const { session, version } = request;
-	return { session, version, response: data };
+	return {
+		session,
+		version,
+		response: {
+			text: data.toString(),
+			end_session : false
+		}
+	};
 }
 
 app.use(express.json());
@@ -17,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req,res) => {
 	console.log('req', JSON.stringify(req.body), req.ip, req.ips, req.headers);
-	res.status(200).json(makeResponse(req.body, req.ips));
+	res.status(200).json(makeResponse(req.body, req.ip));
 });
 
 app.listen(process.env.PORT || 8000, (args) => {
