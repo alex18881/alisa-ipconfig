@@ -1,0 +1,11 @@
+{
+	"version": "1.0.0",
+	"author": {
+		"email": "alex1881@gmail.com",
+		"name": "Alex18881"
+	},
+	"main": "index.js",
+	"dependencies": {
+		"express": "4.17.1"
+	}
+}
