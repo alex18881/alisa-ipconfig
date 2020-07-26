@@ -19,7 +19,7 @@ function needHelp(request) {
 	const helpWords = ['еще', 'снова', 'заново', 'повтори', 'помощь'];
 	return !request.nlu.tokens || !!request.nlu.tokens.length
 		&& request.nlu.tokens.some((token) => {
-			return stopWords.indexOf(token) !== -1;
+			return helpWords.indexOf(token) !== -1;
 		});
 }
 
