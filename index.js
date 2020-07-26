@@ -12,6 +12,6 @@ app.post('/', express.json, (req,res) => {
 	res.status(200).json(req.ips);
 });
 
-app.listen((args) => {
+app.listen(process.env.PORT || 8000, (args) => {
 	console.log(`App started at ${args}`)
 });
